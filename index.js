@@ -139,10 +139,11 @@ async function run() {
     })
 
     app.get('/filter', async(req, res) => {
-        const framework = req.query.framework;
+        const frameworks = req.query.framework;
         let query = {}
-        if(framework){
-            query.framework = framework
+        if(frameworks){
+            const frameworkArray = frameworks.split(',')
+            query.framework = { $in: frameworkArray}
         }
         const result = await modelCollection.find(query).toArray()
         res.send(result)
