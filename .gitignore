@@ -1,0 +1,4 @@
+node_modules
+.env
+aiServiceKey.json
+.vercel
