@@ -132,7 +132,11 @@ async function run() {
     });
 
 
-    
+    app.get('/search', async(req, res) => {
+        const search_title = req.query.search
+        const result = await modelCollection.find({name: {$regex :search_title, $options: 'i'}}).toArray()
+        res.send(result)
+    })
 
 
     await client.db("admin").command({ ping: 1 });
