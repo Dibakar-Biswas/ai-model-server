@@ -59,7 +59,7 @@ async function run() {
 
     app.post("/models", verifyToken, async (req, res) => {
       const data = req.body;
-      // console.log(data)
+
       const result = await modelCollection.insertOne(data);
       res.send({ success: true, result });
     });
@@ -74,8 +74,6 @@ async function run() {
     app.put("/models/:id", async (req, res) => {
       const { id } = req.params;
       const data = req.body;
-      // console.log(id)
-      // console.log(data)
       const objectId = new ObjectId(id);
       const filter = { _id: objectId };
       const update = {
@@ -155,8 +153,6 @@ async function run() {
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
   } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
   }
 }
 run().catch(console.dir);
