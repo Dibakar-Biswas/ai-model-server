@@ -138,6 +138,16 @@ async function run() {
         res.send(result)
     })
 
+    app.get('/filter', async(req, res) => {
+        const framework = req.query.framework;
+        let query = {}
+        if(framework){
+            query.framework = framework
+        }
+        const result = await modelCollection.find(query).toArray()
+        res.send(result)
+    })
+
 
     await client.db("admin").command({ ping: 1 });
     console.log(
