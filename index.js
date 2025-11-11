@@ -57,14 +57,14 @@ async function run() {
       res.send(result);
     });
 
-    app.post("/models", verifyToken, async (req, res) => {
+    app.post("/models", async (req, res) => {
       const data = req.body;
 
       const result = await modelCollection.insertOne(data);
       res.send({ success: true, result });
     });
 
-    app.get("/models/:id", verifyToken, async (req, res) => {
+    app.get("/models/:id", async (req, res) => {
       const { id } = req.params;
 
       const result = await modelCollection.findOne({ _id: new ObjectId(id) });
